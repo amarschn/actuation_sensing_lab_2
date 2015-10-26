@@ -1,59 +1,33 @@
+#include "valve_pwm.h"
+
 void setup() {
-  pinMode(11, OUTPUT);
-
-  // Phase-correct PWM, see https://www.arduino.cc/en/Tutorial/SecretsOfArduinoPWM
-  TCCR2A = _BV(COM2A0) | _BV(COM2B1) | _BV(WGM20);
-  TCCR2B = _BV(WGM22) | _BV(CS22);
-  OCR2A = 4000; // Based on 16MHz / 64 / 4000 / 2 = 31Hz. See the link above for calculation
-  OCR2B = 50; // This value determines the duty cycle: OCR2B / OCR2A = duty cycle
-
+  pinMode(3, OUTPUT);
+  // set timer 2 divisor to  1024 for PWM frequency of 30.64 Hz
+  // See https://arduino-info.wikispaces.com/Arduino-PWM-Frequency for details
+  TCCR2B = TCCR2B & B11111000 | B00000111;
 }
 
+
+
+
 void loop() {
+  
+  // Perform first muscle experiment at 25% duty cycle
   muscle(0.25);
+  
   delay(5000);
+  
+  // Perform second muscle experiment at 50% duty cycle
   muscle(0.50);
+  
   delay(5000);
+  
+  // Perform third muscle experiment at 75% duty cycle
   muscle(0.75);
 }
 
 
-void muscle(float duty_cycle) {
 
-  OCR2B = (int)(OCR2A * duty_cycle);
-
-  unsigned long previous = millis();
-
-  //
-  while (millis() - previous <= 2000) {
-    
-  }
-
-  previous = millis();
-  //
-  while (millis() - previous <= 3000) {
-    
-  }
-  
-  previous = millis();
-  //
-  while (millis() - previous <= 3000) {
-    
-  }
-  
-  previous = millis();
-  //
-  while (millis() - previous <= 3000) {
-    
-  }
-  previous = millis();
-
-  // 
-  while (millis() - previous <= 2000) {
-    
-  }
-  
-}
 
 
 
