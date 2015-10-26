@@ -5,6 +5,7 @@ void setup() {
   // set timer 2 divisor to  1024 for PWM frequency of 30.64 Hz
   // See https://arduino-info.wikispaces.com/Arduino-PWM-Frequency for details
   TCCR2B = TCCR2B & B11111000 | B00000111;
+  Serial.begin(9600);
 }
 
 

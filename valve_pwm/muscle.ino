@@ -10,12 +10,32 @@
  * E. Keep pressure off and turn PWM off for 3 seconds
  */
 void muscle(int duty_cycle) {
+  Serial.print("=======================================================");
+  Serial.print("\nBeginning muscle sequence at ");
+  Serial.print(duty_cycle);
+  Serial.print(" duty cycle.\n");
 
-  hold(2);
-  pwm_muscle(duty_cycle, 3);
-  hold(3);
-  pwm_muscle(duty_cycle, 3);
-  hold(2);
+  Serial.println("Holding for 2 seconds.");
+  hold(2); // A
+  
+  Serial.println("Turn pressure to 60psi and then press button.");
+  
+  
+  Serial.println("Contracting the muscle for 3 seconds.");
+  pwm_muscle(duty_cycle, 3); // B
+
+  Serial.println("Holding the muscle steady for 3 seconds.");
+  hold(3); // C
+
+  Serial.println("Turn pressure off and then press button.");
+  
+  
+  Serial.println("Relaxing the muscle for 3 seconds.");
+  pwm_muscle(duty_cycle, 3); // D
+
+  Serial.println("Holding for 2 seconds.");
+  hold(2); // E
+
 }
 
 /*
