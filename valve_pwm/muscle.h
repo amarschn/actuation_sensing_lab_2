@@ -3,6 +3,5 @@
 
 void muscle(int duty_cycle);
 
-void relax(int duty_cycle, int seconds);
-void contract(int duty_cycle, int seconds);
+void pwm_muscle(int duty_cycle, int seconds);
 void hold(int seconds);

@@ -12,34 +12,21 @@
 void muscle(int duty_cycle) {
 
   hold(2);
-  contract(duty_cycle, 3);
+  pwm_muscle(duty_cycle, 3);
   hold(3);
-  relax(duty_cycle, 3);
+  pwm_muscle(duty_cycle, 3);
   hold(2);
 }
 
 /*
- * Contract the muscle
- *  duty_cycle: Duty cycle at which to contract the muscle
- *  seconds: How long the muscle contracts
+ * PWM the muscle for contraction or relaxation
+ *  duty_cycle: Duty cycle at which to pwm the muscle
+ *  seconds: How long the muscle contracts/relaxes
  */
-void contract(int duty_cycle, int seconds) {
+void pwm_muscle(int duty_cycle, int seconds) {
   unsigned long previous = millis();
   while (millis() - previous <= seconds) {
-    
-  }
-  return;
-}
-
-/*
- * Relax the muscle
- *  duty_cycle: Duty cycle at which to relax the muscle
- *  seconds: How long the muscle relaxes
- */
-void relax(int duty_cycle, int seconds) {
-  unsigned long previous = millis();
-  while (millis() - previous <= seconds) {
-    
+    analogWrite(PIN, duty_cycle);
   }
   return;
 }
@@ -51,7 +38,7 @@ void relax(int duty_cycle, int seconds) {
 void hold(int seconds) {
   unsigned long previous = millis();
   while (millis() - previous <= seconds) {
-    
+    // DO NOTHING
   }
   return;
 }
