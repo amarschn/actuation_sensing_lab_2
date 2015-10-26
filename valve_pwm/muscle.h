@@ -4,4 +4,3 @@
 void muscle(int duty_cycle);
 
 void pwm_muscle(int duty_cycle, int seconds);
-void hold(int seconds);
