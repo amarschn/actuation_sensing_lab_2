@@ -1,6 +1,7 @@
 // This is the pin used to pwm the valve
-#define PIN 3
+#define PIN_CONTRACT 3
+#define PIN_RELAX 11
 
-void muscle(int duty_cycle);
+void muscle(float duty_cycle);
 
-void pwm_muscle(int duty_cycle, int seconds);
+void pwm_muscle(float duty_cycle, int seconds, bool contract);
